@@ -1,0 +1,73 @@
+{
+    "windows": {
+        "options": {
+            "shell": {
+            "executable": "cmd.exe",
+            "args": ["/d", "/c"]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "label": "Create Build Dir",
+            "type": "shell",
+            "linux": {
+                "command": "mkdir -p ./build/"
+            },
+            "windows": {
+                "command": "cmd",
+                "args": [
+                    "/C",
+                    "if not exist .\\build mkdir .\\build",
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "never",
+                "close": true,
+            }
+        },
+        {
+            "type": "shell",
+            "label": "CMake Configuration",
+            "dependsOn": [
+                "Create Build Dir"
+            ],
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+        },
+        {
+            "type": "shell",
+            "label": "CMake Build",
+            "dependsOn": [
+                "CMake Configuration"
+            ],
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--config Debug",
+                "-j4"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+    ],
+    "version": "2.0.0"
+}

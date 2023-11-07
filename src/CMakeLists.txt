@@ -1,0 +1,5 @@
+add_executable(main main.cpp)
+target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(main PRIVATE spdlog)
+target_precompile_headers(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/pch.h)
+set_project_warnings(main)
