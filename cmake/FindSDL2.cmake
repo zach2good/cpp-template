@@ -1,0 +1,11 @@
+CPMAddPackage(
+    NAME SDL2
+    GITHUB_REPOSITORY libsdl-org/SDL
+    GIT_TAG release-2.30.9
+    OPTIONS
+    "SDL2_DISABLE_INSTALL ON"
+    "SDL_SHARED OFF"
+    "SDL_STATIC ON"
+    "SDL_STATIC_PIC ON"
+    "SDL_WERROR OFF"
+)

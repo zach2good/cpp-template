@@ -1,0 +1,11 @@
+CPMAddPackage(
+    NAME SDL3
+    GITHUB_REPOSITORY libsdl-org/SDL
+    GIT_TAG preview-3.1.6
+    OPTIONS
+    "SDL3_DISABLE_INSTALL ON"
+    "SDL_SHARED ON"
+    "SDL_STATIC ON"
+    "SDL_STATIC_PIC ON"
+    "SDL_WERROR OFF"
+)

@@ -1,3 +1,13 @@
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+endif()
+
+find_program(CLANGFORMAT clang-format)
+if(CLANGFORMAT)
+    set(CMAKE_CXX_CLANG_FORMAT ${CLANGFORMAT} -i)
+endif()
 
 find_program(CLANGTIDY clang-tidy)
 if(CLANGTIDY)
@@ -10,5 +20,7 @@ if(CPPCHECK)
                             --inline-suppr --inconclusive)
 endif()
 
+message(STATUS "CCACHE_PROGRAM: ${CCACHE_PROGRAM}")
+message(STATUS "CLANGFORMAT: ${CLANGFORMAT}")
 message(STATUS "CLANGTIDY: ${CLANGTIDY}")
 message(STATUS "CPPCHECK: ${CPPCHECK}")
